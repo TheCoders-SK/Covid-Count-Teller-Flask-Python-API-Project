@@ -1,3 +1,4 @@
+# Imports
 from flask import Flask, render_template, request
 import requests
 import json
@@ -6,6 +7,7 @@ url = "https://disease.sh/v3/covid-19/all"
 response = requests.get(url).text
 json_response = json.loads(response)
 
+# Counts
 count_today = json_response["cases"]
 count_today = f"{count_today:,d}"
 count_total = json_response["updated"]
@@ -19,7 +21,7 @@ count_death = f"{count_death:,d}"
 
 app = Flask(__name__)
 
-
+# Main Route
 @app.route("/")
 def main():
     return render_template(
